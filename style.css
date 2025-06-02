@@ -1,94 +1,205 @@
+/* Base Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: Vazir, sans-serif;
   direction: rtl;
-  background: #f5f8ff;
-  color: #333;
+  background: #121212;
+  color: #e0e0e0;
   margin: 0;
   padding: 20px;
+  line-height: 1.7;
 }
 
 .container {
   max-width: 1100px;
   margin: auto;
+  padding: 10px;
 }
 
 h1, h2 {
-  color: #003399;
+  color: #90caf9;
+  margin-bottom: 16px;
 }
 
+/* Navigation */
 nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   margin-bottom: 20px;
 }
 
 nav button {
-  background: #003399;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  margin: 3px;
+  background: #1f1f1f;
+  color: #e0e0e0;
+  border: 1px solid #333;
+  padding: 8px 14px;
+  border-radius: 6px;
   cursor: pointer;
-  border-radius: 5px;
+  transition: background 0.2s;
 }
 
 nav button:hover {
-  background: #3366cc;
+  background: #2c2c2c;
 }
 
-.section {
-  display: none;
-  margin-bottom: 30px;
-}
-
+/* Inputs & Buttons */
 input, select {
-  padding: 6px;
-  margin: 4px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-table {
+  background: #1e1e1e;
+  color: #e0e0e0;
+  border: 1px solid #333;
+  padding: 7px;
+  margin: 5px 0;
+  border-radius: 5px;
   width: 100%;
-  margin-top: 15px;
-  border-collapse: collapse;
-  text-align: center;
+  max-width: 300px;
 }
 
-table, th, td {
-  border: 1px solid #ccc;
-}
-
-th, td {
-  padding: 8px;
+input::placeholder {
+  color: #888;
 }
 
 button {
+  background: #1976d2;
+  color: #fff;
   border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  margin: 4px;
+  padding: 7px 14px;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
+button:hover {
+  background: #1565c0;
+}
+
+/* Sections */
+section {
+  display: none;
+  margin-bottom: 30px;
+  padding: 15px;
+  background: #1a1a1a;
+  border-radius: 8px;
+}
+
+/* Lists */
 ul {
   list-style: none;
   padding: 0;
 }
 
 li {
-  background: #eaf0ff;
-  margin: 5px 0;
-  padding: 8px;
+  background: #212121;
+  margin: 6px 0;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Buttons in List Items */
+.remove-btn {
+  background: #d32f2f;
+  color: #fff;
+  padding: 4px 8px;
+  border: none;
   border-radius: 4px;
 }
 
-.remove-btn {
-  background: crimson;
-  color: white;
-  margin-right: 5px;
+.remove-btn:hover {
+  background: #c62828;
 }
 
 .edit-btn {
-  background: #f0ad4e;
-  color: white;
+  background: #f9a825;
+  color: #000;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
   margin-right: 5px;
+}
+
+.customer-box {
+  background: #212121;
+  padding: 10px;
+  border-radius: 6px;
+  margin: 6px 0;
+}
+
+.customer-details {
+  margin-top: 8px;
+  padding: 8px;
+  background: #1c1c1c;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #333;
+  text-align: center;
+}
+
+th {
+  background: #212121;
+  color: #90caf9;
+}
+
+td {
+  background: #1a1a1a;
+}
+
+/* Invoice Totals */
+#totalAmount, #totalProfit {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #81c784;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 15px;
+  }
+
+  td {
+    text-align: right;
+    padding: 10px;
+    position: relative;
+    padding-right: 50%;
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-weight: bold;
+    color: #90caf9;
+  }
 }
