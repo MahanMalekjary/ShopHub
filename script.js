@@ -19,27 +19,45 @@ function calcCableCost() {
 }
 
 // مدیریت مشتری‌ها
+// مدیریت مشتری‌ها
+// مدیریت مشتری‌ها
 function addCustomer() {
   let c = {
-    name: customerName.value,
-    phone: customerPhone.value,
-    count: customerCount.value,
-    debt: customerDebt.value
+    name: document.getElementById("customerFullName").value,
+    type: document.getElementById("customerType").value,
+    phone: document.getElementById("customerPhone").value,
+    address: document.getElementById("customerAddress").value,
+    debt: document.getElementById("customerDebt").value
   };
+
+  if (!c.name) {
+    alert("نام را وارد کنید");
+    return;
+  }
+
   let customers = JSON.parse(localStorage.getItem("customers") || "[]");
   customers.push(c);
   localStorage.setItem("customers", JSON.stringify(customers));
   loadCustomers();
+
+  // پاک کردن فیلدها
+  document.getElementById("customerFullName").value = "";
+  document.getElementById("customerType").value = "خریدار";
+  document.getElementById("customerPhone").value = "";
+  document.getElementById("customerAddress").value = "";
+  document.getElementById("customerDebt").value = "";
 }
 
 function loadCustomers() {
-  let list = customerList;
+  let list = document.getElementById("customerList");
   list.innerHTML = "";
   let customers = JSON.parse(localStorage.getItem("customers") || "[]");
   customers.forEach((c, i) => {
     let li = document.createElement("li");
-    li.innerHTML = `${c.name} | ${c.phone} | ${c.count} | ${c.debt}
-      <button onclick="deleteCustomer(${i})">❌</button>`;
+    li.innerHTML = `
+      ${c.name} | ${c.type} | ${c.phone} | ${c.address} | بدهی: ${c.debt} تومان
+      <button onclick="deleteCustomer(${i})">❌</button>
+    `;
     list.appendChild(li);
   });
 }
@@ -50,6 +68,9 @@ function deleteCustomer(i) {
   localStorage.setItem("customers", JSON.stringify(customers));
   loadCustomers();
 }
+
+document.getElementById("addCustomerBtn").addEventListener("click", addCustomer);
+
 
 // مدیریت انبار
 function addProduct() {
