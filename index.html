@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>مدیریت کارگاه RAMCO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://vazir-font.com/font-face.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+
+    <h1>مدیریت کارگاه RAMCO</h1>
+    <nav>
+      <button onclick="showSection('cost')">برآورد هزینه</button>
+      <button onclick="showSection('customers')">مشتری‌ها</button>
+      <button onclick="showSection('inventory')">انبار</button>
+      <button onclick="showSection('todo')">تودولیست</button>
+      <button onclick="showSection('invoice')">فاکتور</button>
+    </nav>
+
+    <!-- برآورد هزینه -->
+    <section id="cost">
+      <h2>برآورد هزینه کابل</h2>
+      <div class="inputs">
+        <input id="cost1" placeholder="هزینه سیم کابل">
+        <input id="cost2" placeholder="هزینه کارگر">
+        <input id="cost3" placeholder="هزینه کانکتور USB">
+        <input id="cost4" placeholder="هزینه کانکتور Type-C">
+        <input id="cost5" placeholder="هزینه بسته‌بندی">
+        <input id="cost6" placeholder="هزینه لحیم">
+        <input id="cost7" placeholder="هزینه تزریق">
+        <input id="cost8" placeholder="هزینه آب">
+        <input id="cost9" placeholder="هزینه برق">
+        <input id="cost10" placeholder="هزینه گاز">
+        <input id="cost11" placeholder="هزینه پسماند">
+        <input id="cost12" placeholder="هزینه حمل‌ونقل">
+        <input id="cost13" placeholder="هزینه اجاره">
+        <input id="cost14" placeholder="هزینه خرابی کابل‌ها">
+      </div>
+      <button onclick="calcCableCost()">محاسبه</button>
+      <p id="result"></p>
+    </section>
+
+    <!-- مشتری‌ها -->
+    <section id="customers" style="display:none;">
+      <h2>مدیریت مشتری‌ها</h2>
+      <input id="customerName" placeholder="نام">
+      <input id="customerPhone" placeholder="شماره">
+      <input id="customerCount" placeholder="تعداد خرید">
+      <input id="customerDebt" placeholder="بدهی">
+      <button onclick="addCustomer()">افزودن</button>
+      <ul id="customerList"></ul>
+    </section>
+
+    <!-- انبار -->
+    <section id="inventory" style="display:none;">
+      <h2>انبار</h2>
+      <input id="productName" placeholder="نام محصول">
+      <input id="productCount" placeholder="تعداد">
+      <input id="productPrice" placeholder="قیمت خرید">
+      <button onclick="addProduct()">افزودن</button>
+      <ul id="productList"></ul>
+    </section>
+
+    <!-- تودولیست -->
+    <section id="todo" style="display:none;">
+      <h2>تودولیست</h2>
+      <input id="todoTask" placeholder="کار">
+      <input id="todoDate" type="date">
+      <button onclick="addTodo()">افزودن</button>
+      <ul id="todoList"></ul>
+    </section>
+
+    <!-- فاکتور -->
+    <section id="invoice" style="display:none;">
+      <h2>فاکتور فروش</h2>
+      <input id="buyerName" placeholder="نام خریدار">
+      <input id="buyerPhone" placeholder="شماره تماس">
+      <input id="buyerCard" placeholder="شماره کارت">
+      <table id="invoiceTable">
+        <thead>
+          <tr>
+            <th>کالا</th>
+            <th>تعداد</th>
+            <th>قیمت واحد</th>
+            <th>قیمت کل</th>
+            <th>حذف</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <button onclick="addInvoiceRow()">افزودن ردیف</button>
+      <p id="totalAmount"></p>
+      <p id="totalProfit"></p>
+      <button onclick="finalizeInvoice()">ثبت فاکتور</button>
+      <button onclick="downloadInvoicePDF()">دانلود PDF</button>
+    </section>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.7.0/jspdf.plugin.autotable.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
