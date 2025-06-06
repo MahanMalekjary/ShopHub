@@ -202,8 +202,7 @@ async function downloadInvoicePDF() {
   doc.setFont("Vazir");
 
   // بارگذاری لوگو
-const imageURL = "https://github.com/MahanMalekjary/workshop/blob/main/Image.png";
-  const imageBlob = await fetch(imageURL).then(r => r.blob());
+  const imageBlob = await fetch("Image.png").then(r => r.blob());
   const reader = new FileReader();
   reader.readAsDataURL(imageBlob);
 
