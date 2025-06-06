@@ -6,18 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://vazir-font.com/font-face.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 </head>
 <body>
 <div class="container">
-
-  <h1>مدیریت کارگاه RAMCO</h1>
-  <nav>
-    <button id="first" onclick="showSection('cost')">برآورد هزینه</button>
-    <button onclick="showSection('customers')">مشتری‌ها</button>
-    <button onclick="showSection('inventory')">انبار</button>
-    <button onclick="showSection('todo')">تودولیست</button>
-    <button id="last" onclick="showSection('invoice')">فاکتور</button>
-  </nav>
+<nav>
+  <button onclick="showSection('cost')">
+    <iconify-icon icon="streamline-ultimate:tag-dollar-bold" width="18" height="18"></iconify-icon>
+    <span>برآورد هزینه</span>
+  </button>
+  <button onclick="showSection('customers')">
+    <iconify-icon icon="solar:user-bold" width="24" height="24"></iconify-icon>
+    <span>مشتری‌ها</span>
+  </button>
+  <button onclick="showSection('inventory')">
+    <iconify-icon icon="bi:house-add-fill" width="24" height="24"></iconify-icon>
+    <span>انبار</span>
+  </button>
+  <button onclick="showSection('todo')">
+    <iconify-icon icon="fluent:check-20-filled" width="24" height="24"></iconify-icon>
+    <span>تودولیست</span>
+  </button>
+  <button onclick="showSection('invoice')">
+    <iconify-icon icon="mingcute:paper-fill" width="24" height="24"></iconify-icon>
+    <span>فاکتور</span>
+  </button>
+</nav>
 
   <!-- برآورد هزینه -->
   <section id="cost">
@@ -81,26 +95,40 @@
   <!-- فاکتور -->
   <section id="invoice" style="display:none;">
     <h2>فاکتور فروش</h2>
-    <input id="buyerName" placeholder="نام خریدار">
-    <input id="buyerPhone" placeholder="شماره تماس">
-   <input id="buyerAddress" placeholder="آدرس خریدار">
+  <span id="factor_Input">
+        <input id="buyerName" placeholder="نام خریدار">
+      <input id="buyerPhone" placeholder="شماره تماس">
+    <input id="buyerAddress" placeholder="آدرس خریدار">
+  </span>
+      <hr>
     <table id="invoiceTable">
       <thead>
       <tr>
-        <th>کالا</th>
-        <th>تعداد</th>
+        <th style="border-radius: 0 13px 13px 0;">کالا</th>
+        <th style="background: #292929;">تعداد</th>
         <th>قیمت واحد</th>
-        <th>قیمت کل</th>
-        <th>حذف</th>
+        <th style="background: #292929;">قیمت کل</th>
+        <th style="border-radius: 13px 0 0 13px;border:none !important">حذف</th>
       </tr>
       </thead>
       <tbody></tbody>
     </table>
-    <button onclick="addInvoiceRow()">افزودن ردیف</button>
+    <span id="factor_addProduct">
+      <button style="
+        margin-top: 1rem;
+        padding: 14px 33px;
+        background: #219126;
+        box-shadow: 0 0 12px #00ff005e;
+        border-radius: 120rem !important;
+        "onclick="addInvoiceRow()">افزودن ردیف</button>
+    </span>
     <p id="totalAmount"></p>
     <p id="totalProfit"></p>
-    <button onclick="finalizeInvoice()">ثبت فاکتور</button>
-    <button onclick="downloadInvoicePDF()">دانلود PDF</button>
+    <span id="factor_CTA">
+          <button onclick="finalizeInvoice()">ثبت فاکتور</button>
+      <button onclick="downloadInvoicePDF()">دانلود PDF</button>
+    </span>
+
   </section>
 
 </div>

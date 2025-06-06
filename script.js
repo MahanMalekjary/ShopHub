@@ -149,7 +149,7 @@ function addInvoiceRow() {
     <td><input type="number" min="1" value="1"></td>
     <td><input type="number" min="0" value="0"></td>
     <td>0</td>
-    <td><button class="remove-btn" onclick="this.parentElement.parentElement.remove(); calcInvoice()">❌</button></td>
+    <td style="border:none !important;"><button class="remove-btn" onclick="this.parentElement.parentElement.remove(); calcInvoice()"><iconify-icon icon="carbon:close-filled" width="24" height="24"></iconify-icon></button></td>
   `;
   invoiceTable.tBodies[0].appendChild(tr);
   calcInvoice();
