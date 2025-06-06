@@ -13,7 +13,7 @@ function calcCableCost() {
   for (let i = 1; i <= 14; i++) {
     total += Number(document.getElementById(`cost${i}`).value) || 0;
   }
-  let suggestedPrice = total + total * 0.25;
+  let suggestedPrice = total + total * 0.27;
   let profit = suggestedPrice - total;
   document.getElementById("result").innerText = `هزینه: ${total} | قیمت پیشنهادی: ${suggestedPrice} | سود: ${profit}`;
 }
@@ -236,7 +236,7 @@ function drawInvoiceContent(doc) {
 
   doc.text(`فروشنده: رامکو`, 200 - 140, 65, { align: "right" });
   doc.text(`آدرس: تهران`, 200 - 140, 72, { align: "right" });
-  doc.text(`تلفن: 091230222`, 200 - 140, 79, { align: "right" });
+  doc.text(`تلفن: 09352999237`, 200 - 140, 79, { align: "right" });
   doc.text(`تاریخ: ${date}`, 200 - 10, 86, { align: "right" });
   doc.text(`شماره فاکتور: ${invoiceNumber}`, 200 - 140, 86, { align: "right" });
 
@@ -273,4 +273,4 @@ function drawInvoiceContent(doc) {
 function showSection(id) {
   document.querySelectorAll("section").forEach(s => s.style.display = "none");
   document.getElementById(id).style.display = "block";
-}
+};
