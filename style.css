@@ -3,7 +3,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  transition: all 0.3s ease-in-out
 }
 @font-face {
   font-family: YB_M;
@@ -14,7 +13,7 @@
   src: url('Assest/Fonts/YB_regular.ttf');
 }
 body {
-  font-family: YB_R, sans-serif;
+  font-family: Vazir, sans-serif;
   direction: rtl;
   background: #121212;
   color: #e0e0e0;
@@ -37,60 +36,38 @@ h1, h2 {
     margin-bottom: 16px;
     letter-spacing: 0px;
 }
-hr{
-      width: 100%;
-    border: none;
-    height: 1px;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-  background: linear-gradient(to left, #00000000,#666666,#00000000);
-}
+
+/* Navigation */
 nav {
-display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9999;
-    padding: 9px 9px;
-    background: #0000001a;
-    backdrop-filter: blur(20px);
-    border-radius: 22px;
-    border: 1px solid #333;
-  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+      justify-content: center;
 }
 
 nav button {
-  all: unset;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 70px;
-  height: 70px;
-  background: rgba(0, 0, 0, 0.2);
-  color: #e0e0e0;
-  border-radius: 18px;
-  cursor: pointer;
-  font-family: "YB_M";
-  transition: background 0.3s ease;
+background: #1f1f1f;
+    color: #e0e0e0;
+    margin-right: -8px;
+    border: 1px solid #333;
+    padding: 8px 14px;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: "YB_M";
+}
+nav #first{
+  border-radius: 0 20px 20px 0;
+  padding-right: 20px;
+}
+nav #last{
+  border-radius: 20px 0 0 20px;
+  padding-left: 20px;
 }
 
 nav button:hover {
   background: #2c2c2c;
-}
-
-nav button iconify-icon {
-  margin-bottom: 4px;
-  color: #e0e0e0;
-}
-
-nav button span {
-  font-size: 12px;
-  text-align: center;
 }
 
 /* Inputs & Buttons */
@@ -154,16 +131,15 @@ li {
 
 /* Buttons in List Items */
 .remove-btn {
-  background: none;
-  color: rgb(207, 59, 59);
+  background: #d32f2f;
+  color: #fff;
   padding: 4px 8px;
   border: none;
   border-radius: 4px;
 }
 
 .remove-btn:hover {
-  color: #b60808;
-  background: none;
+  background: #c62828;
 }
 
 .edit-btn {
@@ -199,13 +175,13 @@ table {
 
 th, td {
   padding: 10px;
+  border: 1px solid #333;
   text-align: center;
-  border-left: 1px solid rgb(48, 48, 48);
 }
 
 th {
   background: #212121;
-  color: #7a88ee;
+  color: #90caf9;
 }
 
 td {
@@ -218,58 +194,14 @@ td {
   font-weight: bold;
   color: #81c784;
 }
-#factor_CTA{
-  width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
-}
-#factor_CTA button{
-  background-color: rgb(43, 43, 43);
-}
-#factor_CTA button:hover{
-  background-color: #373737;
-}
-#factor_CTA  button:first-of-type{
-    border-radius: 0 12px 12px 0;
-    border-left: 2px solid #1a1a1a;
-}
-#factor_CTA  button:last-of-type{
-  border-radius: 12px 0 0 12px;
-}
-#factor_addProduct{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 6.5rem;
-}
-#factor_Input{
-      width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
 
 /* Responsive */
 @media (max-width: 768px) {
   nav {
-    flex-direction: row;
-    gap: 8px;
-    flex-wrap: wrap;
-    padding: 10px;
-    width: 19rem;
+    flex-direction: column;
   }
-  nav button {
-    width: 50px;
-    height: 50px;
-  }
-    nav button span {
-    font-size: 8.4px;
-  }
-  nav button iconify-icon {
-        scale: 87%;
-        margin-bottom: 0;
+  nav button{
+    border-radius: 11px !important;
   }
 
   table, thead, tbody, th, td, tr {
@@ -288,6 +220,7 @@ td {
     text-align: right;
     padding: 10px;
     position: relative;
+    padding-right: 50%;
   }
 
   td::before {
@@ -298,9 +231,6 @@ td {
     font-weight: bold;
     color: #90caf9;
   }
-  #factor_Input{
-    flex-direction: column;
-}
 }
 
 .card {
