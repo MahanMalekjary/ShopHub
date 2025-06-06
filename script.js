@@ -46,18 +46,24 @@ document.getElementById("customerDebt").value = "";
 }
 
 function loadCustomers() {
-let list = document.getElementById("customerList");
-list.innerHTML = "";
-let customers = JSON.parse(localStorage.getItem("customers") || "[]");
-customers.forEach((c, i) => {
-let li = document.createElement("li");
-li.innerHTML = `
-${c.name} | ${c.type} | ${c.phone} | ${c.address} | بدهی: ${c.debt} تومان
-<button onclick="deleteCustomer(${i})">❌</button>
-`;
-list.appendChild(li);
-});
+  let list = document.getElementById("customerList");
+  list.innerHTML = "";
+  let customers = JSON.parse(localStorage.getItem("customers") || "[]");
+  customers.forEach((c, i) => {
+    let li = document.createElement("li");
+    li.className = "card";
+    li.innerHTML = `
+      <p><strong>نام: </strong> ${c.name}</p>
+      <p><strong>نوع: </strong> ${c.type}</p>
+      <p><strong>شماره تماس: </strong> ${c.phone}</p>
+      <p><strong>آدرس: </strong> ${c.address}</p>
+      <p><strong>بدهی: </strong> ${c.debt} تومان</p>
+      <button onclick="deleteCustomer(${i})">❌</button>
+    `;
+    list.appendChild(li);
+  });
 }
+
 
 function deleteCustomer(i) {
 let customers = JSON.parse(localStorage.getItem("customers") || "[]");
@@ -82,16 +88,22 @@ loadProducts();
 }
 
 function loadProducts() {
-let list = productList;
-list.innerHTML = "";
-let products = JSON.parse(localStorage.getItem("products") || "[]");
-products.forEach((p, i) => {
-let li = document.createElement("li");
-li.innerHTML = `${p.name} | ${p.count} | ${p.price}
-<button onclick="deleteProduct(${i})">❌</button>`;
-list.appendChild(li);
-});
+  let list = document.getElementById("productList");
+  list.innerHTML = "";
+  let products = JSON.parse(localStorage.getItem("products") || "[]");
+  products.forEach((p, i) => {
+    let li = document.createElement("li");
+    li.className = "card";
+    li.innerHTML = `
+      <p><strong>نام کالا: </strong> ${p.name}</p>
+      <p><strong>تعداد: </strong> ${p.count}</p>
+      <p><strong>قیمت خرید: </strong> ${p.price} تومان</p>
+      <button onclick="deleteProduct(${i})">❌ حذف</button>
+    `;
+    list.appendChild(li);
+  });
 }
+
 
 function deleteProduct(i) {
 let products = JSON.parse(localStorage.getItem("products") || "[]");
@@ -110,16 +122,21 @@ loadTodos();
 }
 
 function loadTodos() {
-let list = todoList;
-list.innerHTML = "";
-let todos = JSON.parse(localStorage.getItem("todos") || "[]");
-todos.forEach((t, i) => {
-let li = document.createElement("li");
-li.innerHTML = `${t.task} | ${t.date}
-<button onclick="deleteTodo(${i})">❌</button>`;
-list.appendChild(li);
-});
+  let list = document.getElementById("todoList");
+  list.innerHTML = "";
+  let todos = JSON.parse(localStorage.getItem("todos") || "[]");
+  todos.forEach((t, i) => {
+    let li = document.createElement("li");
+    li.className = "card";
+    li.innerHTML = `
+      <p><strong>کار: </strong> ${t.task}</p>
+      <p><strong>تاریخ: </strong> ${t.date}</p>
+      <button class="todoButton" onclick="deleteTodo(${i})">انجام شد</button>
+    `;
+    list.appendChild(li);
+  });
 }
+
 
 function deleteTodo(i) {
 let todos = JSON.parse(localStorage.getItem("todos") || "[]");

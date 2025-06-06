@@ -4,7 +4,14 @@
   margin: 0;
   padding: 0;
 }
-
+@font-face {
+  font-family: YB_M;
+  src: url('Assest/Fonts/YB_medium.ttf');
+}
+@font-face {
+  font-family: YB_R;
+  src: url('Assest/Fonts/YB_regular.ttf');
+}
 body {
   font-family: Vazir, sans-serif;
   direction: rtl;
@@ -22,8 +29,12 @@ body {
 }
 
 h1, h2 {
-  color: #90caf9;
-  margin-bottom: 16px;
+  text-align: center;
+    font-family: "YB_M";
+    color: #6293e1;
+    font-weight: 300;
+    margin-bottom: 16px;
+    letter-spacing: 0px;
 }
 
 /* Navigation */
@@ -32,16 +43,27 @@ nav {
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 20px;
+      justify-content: center;
 }
 
 nav button {
-  background: #1f1f1f;
-  color: #e0e0e0;
-  border: 1px solid #333;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s;
+background: #1f1f1f;
+    color: #e0e0e0;
+    margin-right: -8px;
+    border: 1px solid #333;
+    padding: 8px 14px;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: "YB_M";
+}
+nav #first{
+  border-radius: 0 20px 20px 0;
+  padding-right: 20px;
+}
+nav #last{
+  border-radius: 20px 0 0 20px;
+  padding-left: 20px;
 }
 
 nav button:hover {
@@ -50,14 +72,16 @@ nav button:hover {
 
 /* Inputs & Buttons */
 input, select {
-  background: #1e1e1e;
-  color: #e0e0e0;
-  border: 1px solid #333;
-  padding: 7px;
-  margin: 5px 0;
-  border-radius: 5px;
-  width: 100%;
-  max-width: 300px;
+    background: #1e1e1e;
+    color: #c1c1c1;
+    border: 1px solid #333;
+    padding: 7px;
+    margin: 3px 1px;
+    height: 3rem;
+    border-radius: 8px;
+    width: 100%;
+    font-family: "YB_M";
+    max-width: 300px;
 }
 
 input::placeholder {
@@ -65,12 +89,13 @@ input::placeholder {
 }
 
 button {
-  background: #1976d2;
+  background: #507fcb;
   color: #fff;
   border: none;
-  padding: 7px 14px;
-  border-radius: 5px;
+  padding: 12px 14px;
+  border-radius: 8px;
   cursor: pointer;
+  font-family: "YB_M";
   transition: background 0.2s;
 }
 
@@ -80,11 +105,12 @@ button:hover {
 
 /* Sections */
 section {
-  display: none;
-  margin-bottom: 30px;
-  padding: 15px;
-  background: #1a1a1a;
-  border-radius: 8px;
+    display: none;
+    margin-bottom: 40px;
+    padding: 36px;
+    margin-top: 2rem;
+    background: #1a1a1a;
+    border-radius: 28px;
 }
 
 /* Lists */
@@ -174,6 +200,9 @@ td {
   nav {
     flex-direction: column;
   }
+  nav button{
+    border-radius: 11px !important;
+  }
 
   table, thead, tbody, th, td, tr {
     display: block;
@@ -202,4 +231,36 @@ td {
     font-weight: bold;
     color: #90caf9;
   }
+}
+
+.card {
+border-radius: 16px;
+    padding: 12px;
+    margin-bottom: 10px;
+    background-color: #121212;
+    font-family: "YB_R";
+}
+
+.card p {
+  margin: 6px 0;
+}
+
+.card button {
+    background-color: #ca212c;
+    color: white;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 12px;
+    height: 3rem;
+    cursor: pointer;
+    font-family: "YB_R";
+}
+
+.card strong{
+      font-weight: 400;
+    opacity: 40%;
+}
+
+.todoButton{
+    background-color: #31a52d  !important;
 }
