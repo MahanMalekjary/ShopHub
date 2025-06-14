@@ -31,6 +31,15 @@
     <iconify-icon icon="mingcute:paper-fill" width="24" height="24"></iconify-icon>
     <span>فاکتور</span>
   </button>
+  <button onclick="showSection('cheques')">
+  <iconify-icon icon="fluent:money-hand-20-filled" width="24" height="24"></iconify-icon>
+  <span>چک‌ها</span>
+</button>
+<button onclick="showSection('history')">
+  <iconify-icon icon="mdi:history" width="24" height="24"></iconify-icon>
+  <span>تاریخچه</span>
+</button>
+
 </nav>
 
   <!-- برآورد هزینه -->
@@ -53,6 +62,8 @@
       <input id="cost14" placeholder="هزینه اجاره">
       <input id="cost15" placeholder="هزینه خرابی کابل‌ها">
       <input id="cost16" placeholder="هزینه مواد تزریق">
+      <input id="cost17" placeholder="هزینه کابل 4 رشته ">
+      <input id="cost17" placeholder="هزینه کابل 5 رشته ">
     </div>
     <button onclick="calcCableCost()">محاسبه</button>
     <p id="result"></p>
@@ -130,6 +141,40 @@
     </span>
 
   </section>
+
+  <section id="cheques" style="display: none;">
+  <h2>مدیریت چک‌ها</h2>
+  <input id="chequeNumber" placeholder="شماره چک">
+  <input id="chequeAmount" placeholder="مبلغ (تومان)" type="number">
+  <select id="chequeType">
+    <option value="دریافتی">دریافتی</option>
+    <option value="پرداختی">پرداختی</option>
+  </select>
+  <input id="chequePerson" placeholder="نام شخص">
+  <button onclick="addCheque()">ثبت چک</button>
+  <ul id="chequeList"></ul>
+</section>
+
+
+
+<!-- تاریخچه -->
+<section id="history" style="display:none;">
+  <h2>تاریخچه پرداختی‌ها</h2>
+
+  <!-- بخش دستی -->
+  <h3>افزودن دستی</h3>
+  <input id="historyName" placeholder="نام مشتری">
+  <input id="historyPhone" placeholder="شماره تماس">
+  <input id="historyAmount" placeholder="مبلغ پرداختی" type="number">
+  <input id="historyReason" placeholder="پرداخت بابت">
+  <button onclick="addManualHistory()">ثبت پرداخت</button>
+
+  <hr>
+
+  <!-- نمایش لیست -->
+  <ul id="historyList"></ul>
+</section>
+
 
 </div>
 

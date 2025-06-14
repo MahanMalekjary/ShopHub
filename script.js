@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadCustomers();
   loadProducts();
   loadTodos();
+  loadHistory()
 });
 
 // برآورد هزینه
@@ -13,7 +14,7 @@ function calcCableCost() {
   for (let i = 1; i <= 14; i++) {
     total += Number(document.getElementById(`cost${i}`).value) || 0;
   }
-  let suggestedPrice = total + total * 0.27;
+  let suggestedPrice = total + total * 0.25;
   let profit = suggestedPrice - total;
   document.getElementById("result").innerText = `هزینه: ${total} | قیمت پیشنهادی: ${suggestedPrice} | سود: ${profit}`;
 }
@@ -183,11 +184,28 @@ function finalizeInvoice() {
   localStorage.setItem("products", JSON.stringify(products));
   alert("فاکتور ثبت شد و موجودی به‌روز شد.");
   loadProducts();
+
+  // ✅ محاسبه جمع کل فاکتور
+  let total = 0;
+  invoiceTable.querySelectorAll("tbody tr").forEach(row => {
+    const count = +row.cells[1].querySelector("input").value;
+    const price = +row.cells[2].querySelector("input").value;
+    total += count * price;
+  });
+
+  // ✅ اضافه کردن مبلغ فاکتور به بدهی مشتری
+  let customers = JSON.parse(localStorage.getItem("customers") || "[]");
+  let customer = customers.find(c => c.name === document.getElementById("buyerName").value);
+  if (customer) {
+    customer.debt = Number(customer.debt || 0) + total;
+    localStorage.setItem("customers", JSON.stringify(customers));
+    loadCustomers();
+  }
+
   invoiceTable.tBodies[0].innerHTML = "";
   totalAmount.innerText = "";
   totalProfit.innerText = "";
 }
-
 async function downloadInvoicePDF() {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
@@ -214,7 +232,7 @@ async function downloadInvoicePDF() {
 
     doc.addImage(imgBase64, 'PNG', imgX, 10, imgWidth, 40);
     doc.setFontSize(16);
-    doc.text("فاکتور فروش", 105, 40, { align: "center" });
+    doc.text("فـاکتـور فـروش", 105, 40, { align: "center" });
 
     // حالا ادامه فاکتور
     drawInvoiceContent(doc);
@@ -256,7 +274,7 @@ function drawInvoiceContent(doc) {
     head: [['جمع کل', 'قیمت (تومان)', 'تعداد', 'نام کالا', 'ردیف']],
     body: rows.map(r => [r[4], r[3], r[2], r[1], r[0]]),
     styles: { font: 'Vazir', halign: 'right', textDirection: 'rtl' },
-    headStyles: { fillColor: [200, 0, 0], halign: 'right' },
+    headStyles: { fillColor: [0, 53, 199], halign: 'right' },
     margin: { right: 10, left: 10 }
   });
 
@@ -274,3 +292,143 @@ function showSection(id) {
   document.querySelectorAll("section").forEach(s => s.style.display = "none");
   document.getElementById(id).style.display = "block";
 };
+
+
+// اضافه‌کردن چک جدید
+function addCheque() {
+  const cheque = {
+    number: document.getElementById("chequeNumber").value.trim(),
+    amount: document.getElementById("chequeAmount").value.trim(),
+    type: document.getElementById("chequeType").value,
+    person: document.getElementById("chequePerson").value.trim(),
+    date: new Date().toLocaleDateString("fa-IR"),
+    done: false
+  };
+
+  if (!cheque.number || !cheque.amount || !cheque.person) {
+    alert("لطفاً تمام فیلدها را پر کنید.");
+    return;
+  }
+
+  const cheques = JSON.parse(localStorage.getItem("cheques") || "[]");
+  cheques.push(cheque);
+  localStorage.setItem("cheques", JSON.stringify(cheques));
+  loadCheques();
+
+  // پاک‌کردن فیلدها
+  document.getElementById("chequeNumber").value = "";
+  document.getElementById("chequeAmount").value = "";
+  document.getElementById("chequePerson").value = "";
+}
+
+// بارگذاری چک‌ها در لیست
+function loadCheques() {
+  const list = document.getElementById("chequeList");
+  list.innerHTML = "";
+  const cheques = JSON.parse(localStorage.getItem("cheques") || "[]");
+
+  cheques.forEach((cheque, index) => {
+    const li = document.createElement("li");
+    li.className = "card";
+    li.innerHTML = `
+      <p><strong>شماره چک: </strong>${cheque.number}</p>
+      <p><strong>مبلغ: </strong>${(+cheque.amount).toLocaleString()} تومان</p>
+      <p><strong>نوع: </strong>${cheque.type}</p>
+      <p><strong>شخص: </strong>${cheque.person}</p>
+      <p><strong>تاریخ ثبت: </strong>${cheque.date}</p>
+    `;
+
+    const btnConfirm = document.createElement("button");
+    btnConfirm.textContent = cheque.done ? "✔️ انجام شد" : "✅ انجام بده";
+    btnConfirm.className = "cheque-confirm";
+    if (cheque.done) btnConfirm.classList.add("done");
+    btnConfirm.onclick = () => {
+      cheque.done = !cheque.done;
+      cheques[index] = cheque;
+      localStorage.setItem("cheques", JSON.stringify(cheques));
+      loadCheques();
+    };
+
+    const btnDelete = document.createElement("button");
+    btnDelete.textContent = "🗑️ حذف";
+    btnDelete.className = "cheque-delete";
+    btnDelete.onclick = () => {
+      if (confirm("آیا از حذف این چک مطمئن هستید؟")) {
+        cheques.splice(index, 1);
+        localStorage.setItem("cheques", JSON.stringify(cheques));
+        loadCheques();
+      }
+    };
+
+    const buttonWrap = document.createElement("div");
+    buttonWrap.style.marginTop = "10px";
+    buttonWrap.appendChild(btnConfirm);
+    buttonWrap.appendChild(btnDelete);
+    li.appendChild(buttonWrap);
+    list.appendChild(li);
+  });
+}
+
+// بارگذاری اولیه
+document.addEventListener("DOMContentLoaded", () => {
+  loadCheques();
+});
+
+
+function loadHistory() {
+  const list = document.getElementById("historyList");
+  list.innerHTML = "";
+  const history = JSON.parse(localStorage.getItem("history") || "[]");
+
+  history.forEach((h, i) => {
+    const li = document.createElement("li");
+    li.className = "card";
+    li.innerHTML = `
+      <p><strong>نام: </strong>${h.name}</p>
+      <p><strong>شماره: </strong>${h.phone}</p>
+      <p><strong>مبلغ: </strong>${h.amount} تومان</p>
+      <p><strong>بابت: </strong>${h.reason}</p>
+      <p><strong>تاریخ: </strong>${h.date}</p>
+      <button onclick="deleteHistory(${i})">❌ حذف</button>
+    `;
+    list.appendChild(li);
+  });
+}
+
+function addManualHistory() {
+  const name = document.getElementById("historyName").value;
+  const phone = document.getElementById("historyPhone").value;
+  const amount = document.getElementById("historyAmount").value;
+  const reason = document.getElementById("historyReason").value;
+  const date = new Date().toLocaleDateString("fa-IR");
+
+  if (!name || !amount) return alert("نام و مبلغ الزامی است");
+
+  const history = JSON.parse(localStorage.getItem("history") || "[]");
+  history.push({ name, phone, amount, reason, date });
+  localStorage.setItem("history", JSON.stringify(history));
+
+  // ✅ کم کردن مبلغ پرداختی از بدهی مشتری
+  const customers = JSON.parse(localStorage.getItem("customers") || "[]");
+  const customer = customers.find(c => c.name === name);
+  if (customer) {
+    customer.debt = Math.max(0, Number(customer.debt || 0) - Number(amount));
+    localStorage.setItem("customers", JSON.stringify(customers));
+    loadCustomers();
+  }
+
+  // پاک‌کردن فیلدها و بارگذاری لیست
+  document.getElementById("historyName").value = "";
+  document.getElementById("historyPhone").value = "";
+  document.getElementById("historyAmount").value = "";
+  document.getElementById("historyReason").value = "";
+
+  loadHistory();
+}
+
+function deleteHistory(index) {
+  const history = JSON.parse(localStorage.getItem("history") || "[]");
+  history.splice(index, 1);
+  localStorage.setItem("history", JSON.stringify(history));
+  loadHistory();
+}
