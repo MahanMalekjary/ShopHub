@@ -3,7 +3,7 @@
 box-sizing: border-box;
 margin: 0;
 padding: 0;
-transition: all 0.3s ease-in-out
+transition: all 1.75s ease-out
 }
 @font-face {
 font-family: YB_M;
@@ -374,4 +374,45 @@ background-color: #c62828;
 width: 100%;
 margin: 5px 0;
 }
+}
+@media (min-width: 1170px) {
+  .mobilescreenNav {
+  display: none;
+}
+.showNavBtn{
+  display: none;
+}
+}
+@media (max-width: 1170px) {
+  .widescreenNav {
+  display: none;
+}
+}
+
+  .mobilescreenNav {
+    position: fixed !important;
+    top: 50%;
+    right: -4rem;
+    width: 72px;
+    height: 27rem;
+    flex-direction: column;
+    transform: translateY(-50%);
+}
+
+.showNavBtn {
+    width: 2rem;
+    display: flex;
+    position: fixed;
+    top: 50%;
+    justify-content: center;
+    right: 1rem;
+    flex-direction: row;
+    transform: translateY(-50%);
+    align-items: center;
+    padding: 18px;
+    border-radius: 2rem;
+    height: 2rem;
+    border: 1px solid #333333;
+    background: #00000000;
+    backdrop-filter: blur(18px);
 }

@@ -432,3 +432,21 @@ function deleteHistory(index) {
   localStorage.setItem("history", JSON.stringify(history));
   loadHistory();
 }
+
+var is_NavClicked = 1;
+
+function showNav(){
+  if (is_NavClicked % 2 === 0) {
+  document.getElementById("nav").style.right = "-4rem";
+  document.getElementById("showNavBtn").style.right = "1rem";
+  document.getElementById("showNavBtn_Icon").style.transform = "rotate(0deg)";
+  is_NavClicked = is_NavClicked + 1;
+  }
+  else{
+  document.getElementById("nav").style.right = "1rem";
+  document.getElementById("showNavBtn").style.right = "6rem";
+  document.getElementById("showNavBtn_Icon").style.transform = "rotate(180deg)";
+  is_NavClicked = is_NavClicked + 1;
+  }
+
+}

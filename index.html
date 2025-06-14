@@ -9,38 +9,79 @@
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 </head>
 <body>
+<!-- پدر مادر همه چیز -->
 <div class="container">
-<nav>
-  <button onclick="showSection('cost')">
-    <iconify-icon icon="streamline-ultimate:tag-dollar-bold" width="18" height="18"></iconify-icon>
-    <span>برآورد هزینه</span>
-  </button>
-  <button onclick="showSection('customers')">
-    <iconify-icon icon="solar:user-bold" width="24" height="24"></iconify-icon>
-    <span>مشتری‌ها</span>
-  </button>
-  <button onclick="showSection('inventory')">
-    <iconify-icon icon="bi:house-add-fill" width="24" height="24"></iconify-icon>
-    <span>انبار</span>
-  </button>
-  <button onclick="showSection('todo')">
-    <iconify-icon icon="fluent:check-20-filled" width="24" height="24"></iconify-icon>
-    <span>تودولیست</span>
-  </button>
-  <button onclick="showSection('invoice')">
-    <iconify-icon icon="mingcute:paper-fill" width="24" height="24"></iconify-icon>
-    <span>فاکتور</span>
-  </button>
-  <button onclick="showSection('cheques')">
-  <iconify-icon icon="fluent:money-hand-20-filled" width="24" height="24"></iconify-icon>
-  <span>چک‌ها</span>
-</button>
-<button onclick="showSection('history')">
-  <iconify-icon icon="mdi:history" width="24" height="24"></iconify-icon>
-  <span>تاریخچه</span>
-</button>
 
-</nav>
+  <!-- بیصاحاب که توش آشغال میذاریم بمونه -->
+  <nav class="widescreenNav">
+    <button onclick="showSection('cost')">
+      <iconify-icon icon="streamline-ultimate:tag-dollar-bold" width="18" height="18"></iconify-icon>
+      <span>برآورد هزینه</span>
+    </button>
+    <button onclick="showSection('customers')">
+      <iconify-icon icon="solar:user-bold" width="24" height="24"></iconify-icon>
+      <span>مشتری‌ها</span>
+    </button>
+    <button onclick="showSection('inventory')">
+      <iconify-icon icon="bi:house-add-fill" width="24" height="24"></iconify-icon>
+      <span>انبار</span>
+    </button>
+    <button onclick="showSection('todo')">
+      <iconify-icon icon="fluent:check-20-filled" width="24" height="24"></iconify-icon>
+      <span>تودولیست</span>
+    </button>
+    <button onclick="showSection('invoice')">
+      <iconify-icon icon="mingcute:paper-fill" width="24" height="24"></iconify-icon>
+      <span>فاکتور</span>
+    </button>
+    <button onclick="showSection('cheques')">
+    <iconify-icon icon="fluent:money-hand-20-filled" width="24" height="24"></iconify-icon>
+    <span>چک‌ها</span>
+  </button>
+  <button onclick="showSection('history')">
+    <iconify-icon icon="mdi:history" width="24" height="24"></iconify-icon>
+    <span>تاریخچه</span>
+  </button>
+
+  
+  </nav>
+
+  <!-- اون دکمهه که روش بزنیم این پایینی میاد بالا -->
+    <div id="showNavBtn" class="showNavBtn" onclick="showNav()">
+      <iconify-icon id="showNavBtn_Icon" style="transform: rotate(0);" icon="solar:arrow-left-bold-duotone" width="24" height="24"  style="color: #606060"></iconify-icon>
+    </div>
+    <!-- همون بی صاحاب ولی برای موبایل -->
+    <nav id="nav" class="mobilescreenNav">
+    <button onclick="showSection('cost')">
+      <iconify-icon icon="streamline-ultimate:tag-dollar-bold" width="18" height="18"></iconify-icon>
+      <span>برآورد هزینه</span>
+    </button>
+    <button onclick="showSection('customers')">
+      <iconify-icon icon="solar:user-bold" width="24" height="24"></iconify-icon>
+      <span>مشتری‌ها</span>
+    </button>
+    <button onclick="showSection('inventory')">
+      <iconify-icon icon="bi:house-add-fill" width="24" height="24"></iconify-icon>
+      <span>انبار</span>
+    </button>
+    <button onclick="showSection('todo')">
+      <iconify-icon icon="fluent:check-20-filled" width="24" height="24"></iconify-icon>
+      <span>تودولیست</span>
+    </button>
+    <button onclick="showSection('invoice')">
+      <iconify-icon icon="mingcute:paper-fill" width="24" height="24"></iconify-icon>
+      <span>فاکتور</span>
+    </button>
+    <button onclick="showSection('cheques')">
+    <iconify-icon icon="fluent:money-hand-20-filled" width="24" height="24"></iconify-icon>
+    <span>چک‌ها</span>
+  </button>
+  <button onclick="showSection('history')">
+    <iconify-icon icon="mdi:history" width="24" height="24"></iconify-icon>
+    <span>تاریخچه</span>
+  </button>
+
+  </nav>
 
   <!-- برآورد هزینه -->
   <section id="cost">
