@@ -56,7 +56,7 @@ function loadCustomers() {
       <p><strong>شماره تماس: </strong> ${c.phone}</p>
       <p><strong>آدرس: </strong> ${c.address}</p>
       <p><strong>بدهی: </strong> ${c.debt} تومان</p>
-      <button onclick="deleteCustomer(${i})">❌</button>
+      <button style="background: #c62828;" onclick="deleteCustomer(${i})">❌</button>
     `;
     list.appendChild(li);
   });
@@ -95,7 +95,7 @@ function loadProducts() {
       <p><strong>نام کالا: </strong> ${p.name}</p>
       <p><strong>تعداد: </strong> ${p.count}</p>
       <p><strong>قیمت خرید: </strong> ${p.price} تومان</p>
-      <button onclick="deleteProduct(${i})">❌ حذف</button>
+      <button style="background: #c62828; onclick="deleteProduct(${i})">❌ حذف</button>
     `;
     list.appendChild(li);
   });
@@ -330,6 +330,8 @@ function loadCheques() {
   cheques.forEach((cheque, index) => {
     const li = document.createElement("li");
     li.className = "card";
+    li.id = "chequeDiv";
+    li.style.border = "1px solid #333333"
     li.innerHTML = `
       <p><strong>شماره چک: </strong>${cheque.number}</p>
       <p><strong>مبلغ: </strong>${(+cheque.amount).toLocaleString()} تومان</p>
@@ -339,9 +341,10 @@ function loadCheques() {
     `;
 
     const btnConfirm = document.createElement("button");
-    btnConfirm.textContent = cheque.done ? "✔️ انجام شد" : "✅ انجام بده";
+    btnConfirm.textContent = cheque.done ? "انجام شده" : "دریافت/پرداخت نشده";
     btnConfirm.className = "cheque-confirm";
     if (cheque.done) btnConfirm.classList.add("done");
+
     btnConfirm.onclick = () => {
       cheque.done = !cheque.done;
       cheques[index] = cheque;
@@ -389,7 +392,7 @@ function loadHistory() {
       <p><strong>مبلغ: </strong>${h.amount} تومان</p>
       <p><strong>بابت: </strong>${h.reason}</p>
       <p><strong>تاریخ: </strong>${h.date}</p>
-      <button onclick="deleteHistory(${i})">❌ حذف</button>
+      <button style="background-color: #c62828;" onclick="deleteHistory(${i})">❌ حذف</button>
     `;
     list.appendChild(li);
   });

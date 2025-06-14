@@ -28,7 +28,11 @@ max-width: 1100px;
 margin: auto;
 padding: 10px;
 }
-
+.flexStyler{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 h1, h2 {
 text-align: center;
 font-family: "YB_M";
@@ -337,7 +341,7 @@ background-color: #0f9f0a !important;
 
 
 .cheque-confirm {
-background-color: #5cdc60; /* سبز کم‌رنگ */
+background-color: #353535; /* سبز کم‌رنگ */
 color: white;
 border: none;
 padding: 6px 14px;
@@ -350,7 +354,7 @@ margin-left: 8px;
 }
 
 .cheque-confirm.done {
-background-color: #2e7d32; /* سبز پررنگ */
+background-color: #2b9c30; /* سبز پررنگ */
 }
 
 .cheque-delete {
@@ -369,25 +373,7 @@ transition: background 0.2s ease-in-out;
 background-color: #c62828;
 }
 
-@media (max-width: 600px) {
-.cheque-confirm, .cheque-delete {
-width: 100%;
-margin: 5px 0;
-}
-}
-@media (min-width: 1170px) {
-  .mobilescreenNav {
-  display: none;
-}
-.showNavBtn{
-  display: none;
-}
-}
-@media (max-width: 1170px) {
-  .widescreenNav {
-  display: none;
-}
-}
+
 
   .mobilescreenNav {
     position: fixed !important;
@@ -415,4 +401,52 @@ margin: 5px 0;
     border: 1px solid #333333;
     background: #00000000;
     backdrop-filter: blur(18px);
+}
+
+
+
+@media (max-width: 600px) {
+.cheque-confirm, .cheque-delete {
+width: 100%;
+margin: 5px 0;
+}
+}
+@media (min-width: 1170px) {
+  .mobilescreenNav {
+  display: none;
+}
+.showNavBtn{
+  display: none;
+}
+}
+@media (max-width: 1170px) {
+  .widescreenNav {
+  display: none;
+}
+}
+@media (max-width: 768px) {
+  .card {
+    display: flow;
+    padding: 10px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    margin-top: 2rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+
+  .card button {
+    width: 100%;
+    padding: 10px;
+    height: auto;
+    font-size: 1rem;
+  }
+
+  .card strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+  }
 }
