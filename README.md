@@ -1,4 +1,4 @@
-# Workshop Project
+# Workshop Management Project
 
 **Hosted by:** Mahan & Mobin Malekjary  
 **Repository:** [MahanMalekjary/workshop](https://github.com/MahanMalekjary/workshop)
