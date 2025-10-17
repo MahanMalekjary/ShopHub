@@ -1,8 +1,8 @@
 # Workshop Management Project
 
 **Hosted by:** Mahan & Mobin Malekjary  
-**Repository:** [MahanMalekjary/workshop](https://github.com/MahanMalekjary/workshop)
-**GitHub Page** [See Website](https://MahanMalekjary.github.io/workshop)
+**Repository:** [MahanMalekjary/ShopHub](https://github.com/MahanMalekjary/ShopHub)
+**GitHub Page** [See Website](https://MahanMalekjary.github.io/ShopHub)
 
 ---
 
