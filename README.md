@@ -113,4 +113,4 @@ Distributed under the MIT License. See `LICENSE` for details.
 ## 🤝 Contact
 
 **Mahan & Mobin Malekjary** – *Author & Workshop Lead*  
-Project link: https://github.com/MahanMalekjary/workshop
+Project link: https://github.com/MahanMalekjary/ShopHub
